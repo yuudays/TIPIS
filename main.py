@@ -127,7 +127,7 @@ def start_game(environment, params, video_recorder=False):
         # ПД-регулятор
         # action = pd(state, params)
         # action = p(state, params)
-        action = p(state, params)
+        action = pi(state, params)
         state, reward, done, info, _ = environment.step(action)
         total += reward
 
@@ -179,9 +179,9 @@ if __name__ == "__main__":
     optimize_params = False  # True - если хотим подобрать новые параметры
 
     # params_pd = np.array([0.84827712, -1.55060286, -1.82178159, 0.8182234]) FOR PD
-    params_pd = np.array([-0.08, -1.55060286, -0.9, 0.8182234]) # FOR P
+    # params_pd = np.array([-0.08, -1.55060286, -0.9, 0.8182234]) # FOR P
     # params_pd = np.array([-0.09, 0, -0.9, 0]) # FOR PI
-    #params_pd = np.array([0.49360925, 0.53040404, -1.22923205, -0.35184264]) # FOR PI
+    params_pd = np.array([0.49360925, 0.53040404, -1.22923205, -0.35184264]) # FOR PI
 
     if optimize_params:
         score = start_game(env, params_pd, video_recorder=False)
